@@ -32,28 +32,37 @@ def mcp2515_init():
     
     # Set configuration mode
     spi.xfer2([WRITE, 0x0F, 0x80])
+    time.sleep(0.1)
     
     # Set bit timing
     spi.xfer2([WRITE, 0x29, 0x41])
+    time.sleep(0.1)
     spi.xfer2([WRITE, 0x28, 0x00])
+    time.sleep(0.1)
     spi.xfer2([WRITE, 0x2A, 0x03])
+    time.sleep(0.1)
     
     # Enable interrupts
     spi.xfer2([WRITE, 0x2B, 0x03])
+    time.sleep(0.1)
     
     # Set normal mode
     spi.xfer2([WRITE, 0x0F, 0x00])
+    time.sleep(0.1)
 
 # Send a CAN message
 def send_can_message(id, data):
     # Set TX buffer ID
     spi.xfer2([WRITE, TXB0SIDH, (id >> 3) & 0xFF, (id << 5) & 0xE0])
+    time.sleep(0.1)
     
     # Set TX buffer data length and data
     spi.xfer2([WRITE, TXB0D0, len(data)] + data)
+    time.sleep(0.1)
     
     # Request to send message
     spi.xfer2([RTS_TX0])
+    time.sleep(0.1)
 
 # Receive a CAN message
 def receive_can_message():
