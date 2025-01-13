@@ -4,7 +4,7 @@ import time
 
 # Initialize SPI
 spi = spidev.SpiDev()
-spi.open(0, 1)  # Open SPI bus 0, device (CS) 0
+spi.open(0, 1)  # Open SPI bus 0, device (CS) 1
 spi.max_speed_hz = 1000000  # Set SPI speed to 1 MHz
 
 # MCP2515 initialization sequence
@@ -31,7 +31,7 @@ def mcp2515_init():
 mcp2515_init()
 
 # Create a CAN bus instance
-bus = can.interface.Bus(channel='vcan0', bustype='socketcan')
+bus = can.Bus(channel='vcan0', interface='socketcan')
 
 # Send a CAN message
 msg = can.Message(arbitration_id=0x123, data=[0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88], extended_id=False)
