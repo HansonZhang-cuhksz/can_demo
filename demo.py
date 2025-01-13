@@ -80,13 +80,15 @@ def receive_can_message():
 # Initialize MCP2515
 mcp2515_init()
 
-# Send a CAN message
-send_can_message(0x2FF, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF])
-print("Message sent on CAN bus")
-
-# Receive a CAN message
 while True:
-    id, data = receive_can_message()
-    if id is not None:
-        print(f"Received message: ID={id}, Data={data}")
+    # Send a CAN message
+    send_can_message(0x2FF, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF])
+    print("Message sent on CAN bus")
     time.sleep(1)
+
+# # Receive a CAN message
+# while True:
+#     id, data = receive_can_message()
+#     if id is not None:
+#         print(f"Received message: ID={id}, Data={data}")
+#     time.sleep(1)
