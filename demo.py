@@ -4,7 +4,7 @@ import time
 
 # Initialize SPI
 spi = spidev.SpiDev()
-spi.open(0, 0)  # Open SPI bus 0, device (CS) 0
+spi.open(0, 1)  # Open SPI bus 0, device (CS) 0
 spi.max_speed_hz = 1000000  # Set SPI speed to 1 MHz
 
 # MCP2515 initialization sequence
